@@ -22,7 +22,7 @@ After the users has selected the race they would like to receive telemetry for t
 
 The left side of the screen will have a track map with each of the driver's position represented by a dot. The dot will be in the driver's team's colour and display the driver number to identify which driver.
 
-Below the track map will be the pole lap time, the current fastest lap, the expected time lost for a pit stop, a pit stop under VSC, and a pit stop under SC.
+Below the track map will be the pole lap time, the current fastest lap, the expected time lost for a pit stop, a pit stop under VSC, and a pit stop under SC. We will also have the three compound levels provided for the weekend ( C#, #, #).
 
 The rest of the screen will be taken up by a list of the drivers. There will be two rows of drivers with the right row being offset vertically. The drivers will be arranged like a starting grid, with P1 at the top left, P2 at the top right, P3 below P1, P4 below P2, and so on.
 
@@ -44,7 +44,7 @@ The page will contain information about the driver and their race weekend.
 - Driver name and number
 - Current position
 - Starting positions (gained/lost)
-- Current tire
+- Current tire compound
 - Tire age
 - Number of pit stops
   - Team's average pit stop time this race (expected time if no stops)
