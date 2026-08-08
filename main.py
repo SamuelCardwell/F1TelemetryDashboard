@@ -1,29 +1,32 @@
 # main thingy
 
-import sys
 import datetime
 import PySimpleGUI as sg
 import fastf1 as ff1
 
-from ingest.events import getEventsList
+from pages.session_select_pg import build_layout as session_layout, handle_event as session_event
+from pages.race_dashboard_pg import build_layout as dashboard_layout
 
 ff1.Cache.enable_cache('./cache')
 
 
 def main():
-    currentYear = datetime.datetime.now().year
-    years = list(range(2024, currentYear + 1))
 
     layout = [
         [
-            sg.T("Year:"),
-            sg.Drop(years, default_value=currentYear, key='DROP_YEAR', readonly=True, enable_events=True),
-            sg.T("Event:"),
-            sg.Drop(getEventsList(currentYear), default_value="", key='DROP_EVENT', readonly=True)
+            sg.Column(session_layout(), key='SESSION_SELECT'),
+            sg.Column(dashboard_layout(), key='RACE_DASHBOARD', visible=False)
         ]
     ]
 
-    window = sg.Window("F1TelemetryDashboard", layout)
+    window = sg.Window("F1TelemetryDashboard", layout, finalize=True)
+    window.maximize()
+
+    state = {
+        "query_year": datetime.datetime.now().year,
+        "query_event": None,
+        "query_session": None
+    }
 
     while True:
         event, values = window.read()
@@ -31,12 +34,12 @@ def main():
         if event == sg.WIN_CLOSED:
             break
 
-        if event == 'DROP_YEAR':
-            query_year = values['DROP_YEAR']
-            
-            window['DROP_EVENT'].update(values=getEventsList(query_year))
+        if event == 'GET_SESSION':
+            window['SESSION_SELECT'].update(visible=False)
+            window['RACE_DASHBOARD'].update(visible=True)
 
-        
+        session_event(window, event, values, state)
+
 
     window.close()
 
