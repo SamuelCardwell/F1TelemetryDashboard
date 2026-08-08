@@ -34,13 +34,3 @@ def getEventSessions(year, gp):
     else:
         print("error: unknown event format")
         return []
-
-
-
-
-# Get a specific session from an event
-# year: the championship year of the session (ie. 2025)
-# gp: the event that the session was in (ie. "Silversone", 1)
-# session: the specific session to get (ie. FP1, Q, R)
-def getSession(year, gp, session):
-    schedule = ff1.get_session(year, gp, session)

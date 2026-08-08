@@ -2,7 +2,7 @@ import datetime
 import PySimpleGUI as sg
 from ingest.events import getEventsList, getEventSessions
 
-def build_layout():
+def build_layout(state):
     current_year = datetime.datetime.now().year
     years = list(range(2024, current_year + 1))
     
@@ -18,7 +18,7 @@ def build_layout():
         ]
     ]
 
-def handle_event(window, event, values, state):
+def handle_events(window, event, values, state):
     if event == 'DROP_YEAR':
         state['query_year'] = values['DROP_YEAR']
         
@@ -40,4 +40,5 @@ def handle_event(window, event, values, state):
             'query_year': values['DROP_YEAR'],
             'query_event': values['DROP_EVENT'],
             'query_session': values['DROP_SESSION'],
+            'new_session': True
         })
