@@ -5,9 +5,9 @@ import fastf1 as ff1
 # gp: the event that the session was in (ie. "Silversone", 1)
 # session: the specific session to get (ie. FP1, Q, R)
 def getSession(year, gp, session):
-    session = ff1.get_session(year, gp, session)
-    session.load()
-    return session
+    session = ff1.get_session(year, gp, session)        # this gets the session from the fast f1 api or the local cache if its there
+    session.load()                                      # this actually loads the data in
+    return session                                      # this returns the loaded session variable
 
 
 
