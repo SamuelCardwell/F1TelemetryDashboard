@@ -5,7 +5,7 @@ import PySimpleGUI as sg
 import fastf1 as ff1
 
 from pages.session_select_pg import build_layout as session_layout, handle_events as session_events
-from pages.race_dashboard_pg import build_layout as dashboard_layout, handle_events as dashboard_events
+from pages.race_dashboard_pg import build_layout as dashboard_layout, handle_events as dashboard_events, play_race
 
 ff1.Cache.enable_cache('./cache')
 
@@ -19,7 +19,12 @@ def main():
             "query_year": datetime.datetime.now().year,
             "query_event": None,
             "query_session": None,
-            "new_session": False
+            "new_session": False,
+            "play": False,
+            "session_started_at": 0.0,
+            "prev_time": 0.0,
+            "session_time": 0.0,
+            "lead_lap": 0
         }
     
     layout = [
@@ -34,7 +39,7 @@ def main():
 
 
     while True:
-        event, values = window.read()
+        event, values = window.read(timeout=100)
 
         if event == sg.WIN_CLOSED:
             break
@@ -49,6 +54,8 @@ def main():
         # elif active_page == 'RACE_DASHBOARD':
         dashboard_events(window, event, values, state)
 
+        if state.get('play', False) and 'session' in state:
+            play_race(window, state)
 
 
     window.close()
