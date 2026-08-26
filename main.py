@@ -35,7 +35,8 @@ def main():
         [
             # each of these list items represents something to display for the GUI, these ones are functions that return the other page layouts for the rest of the app. check their files for info on the other layouts
             sg.Column(session_layout(state), key='SESSION_SELECT'),                         # this is the first page that lets users pick a session, it is automatically shown when the app starts
-            sg.Column(dashboard_layout(state), key='RACE_DASHBOARD', visible=False)         # this is the dashboard page, it is automatically hidden when the app starts
+            sg.Column(dashboard_layout(state), key='RACE_DASHBOARD', visible=False),        # this is the dashboard page, it is automatically hidden when the app starts
+            create_a_new_drive_info_page        # add a new page for the driver info
         ]
     ]
 

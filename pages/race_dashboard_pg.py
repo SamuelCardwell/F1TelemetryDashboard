@@ -14,7 +14,8 @@ def build_layout(state):
             ps.Text("some session information:\n"),
             ps.Text("", key='SESSION_INFO'),
             ps.Button("Start Race", key="PLAY_RACE"),
-            ps.Text("Current lead lap: 00", key="LEAD_LAP")
+            ps.Text("Current lead lap: 00", key="LEAD_LAP"),
+            add_a_button_to_see_driver_info_page
         ]
     ]
 
