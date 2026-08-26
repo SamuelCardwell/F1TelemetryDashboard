@@ -14,7 +14,8 @@ def build_layout(state):
             ps.Text("some session information:\n"),
             ps.Text("", key='SESSION_INFO'),
             ps.Button("Start Race", key="PLAY_RACE"),
-            ps.Text("Current lead lap: 00", key="LEAD_LAP")
+            ps.Text("Current lead lap: 00", key="LEAD_LAP"),
+            display_the_driver_and_their_position
         ]
     ]
 
@@ -66,10 +67,15 @@ def play_race(window, state):
     ].sort_values("LapStartTime")                                   # sorts the laps by the start time (mot recent at the back)
 
     if not driver_laps.empty:                                           # checks if the list of laps is empty
+
         current_lead_lap = int(driver_laps.iloc[-1]["LapNumber"])       # gets the lap number of the last lap in the list (the most recent)
-            
+        
         if current_lead_lap > state['lead_lap']:                        # checks if it is a new lap
             state['lead_lap'] = current_lead_lap                        # if it is then update the variable in the state dictionary and the text on the page
             window['LEAD_LAP'].update(f"Current lead lap: {current_lead_lap:02d}")
+
+
+        # for each driver check the if their postion has changed
+        add_check_here_and_update_text
 
     return

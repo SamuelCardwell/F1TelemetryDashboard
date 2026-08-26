@@ -54,7 +54,7 @@ def main():
             break
 
         # this checks if the button with the 'GET_SESSION' key has been clicked
-        # if it has then in hids the first page and displays the dashboard page
+        # if it has then in hides the first page and displays the dashboard page
         if event == 'GET_SESSION':
             window['SESSION_SELECT'].update(visible=False)
             window['RACE_DASHBOARD'].update(visible=True)
