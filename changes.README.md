@@ -15,3 +15,5 @@ To do this you will need to:
 Files needed:
 - pages/race_dashboard.py
 - models/driver.py
+
+Make sure to delete this file once you are done with the new page!
