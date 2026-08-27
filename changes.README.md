@@ -1,4 +1,7 @@
 The goal of this branch is to display a driver's position on the dashboard page.
+
+> I left just plain text in most of the areas you will need to add stuff
+
 To do this you will need to:
 1. Add a text element that names the driver and will be used for their position
 2. Add a position variable to the driver class
@@ -7,3 +10,8 @@ To do this you will need to:
 5. If the position has changed
     1. Store it in the driver class instance
     2. Update the text field
+
+
+Files needed:
+- pages/race_dashboard.py
+- models/driver.py
